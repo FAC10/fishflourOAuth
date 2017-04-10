@@ -1,10 +1,15 @@
 const hapi = require("hapi");
 const inert = require("inert");
+const fs = require('fs');
 
 const server = new hapi.Server();
 
 server.connection({
   port: process.env.PORT || 4000,
+  tls: {
+    key: fs.readFileSync(__dirname + '/../keys/key.pem'),
+    cert: fs.readFileSync(__dirname + '/../keys/cert.pem')
+    }
 });
 
 server.register(inert, (err) => {
@@ -16,6 +21,7 @@ server.register(inert, (err) => {
       file: __dirname + "/../public/index.html",
     }
   });
+  // console.log(server.info);
 });
 
 server.start((err) => {
