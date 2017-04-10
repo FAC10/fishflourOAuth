@@ -1,0 +1,23 @@
+{
+  "name": "fishflouroauth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FAC10/fishflourOAuth.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FAC10/fishflourOAuth/issues"
+  },
+  "homepage": "https://github.com/FAC10/fishflourOAuth#readme",
+  "dependencies": {
+    "hapi": "^16.1.1",
+    "inert": "^4.2.0"
+  }
+}
