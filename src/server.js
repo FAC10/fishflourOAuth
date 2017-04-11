@@ -1,8 +1,10 @@
 const hapi = require("hapi");
 const inert = require("inert");
+const fs = require("fs");
+
 const login = require("./routes/login.js");
 const home = require("./routes/home.js");
-const fs = require("fs");
+const welcome = require("./routes/welcome.js");
 
 
 console.log(home, login);
@@ -18,7 +20,7 @@ server.connection({
 
 server.register(inert, (err) => {
   if (err) throw err;
-  server.route([home, login]);
+  server.route([home, login, welcome]);
 });
 
 server.start((err) => {
