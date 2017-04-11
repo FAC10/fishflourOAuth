@@ -6,8 +6,7 @@ const users = {
 };
 
 const validate = (token, request, cb) => {
-  console.log("token ======", token.id);
-  if(!people[token.user.user_id]){
+  if(!users[token.user.user_id]){
     return cb(null, false);
   }
   return cb(null, true);

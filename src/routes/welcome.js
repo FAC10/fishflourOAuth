@@ -35,10 +35,9 @@ module.exports = {
             let config = {
               path: "/",
             };
-            reply.redirect("/secure").state("token", token, config);
+            reply("hello you are logged in").state("token", token, config);
           });
         });
-        reply.redirect("/");
       });
 
   // console.log(process.env.CLIENT_ID, process.env.CLIENT_SECRET);
