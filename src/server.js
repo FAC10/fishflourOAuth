@@ -1,10 +1,14 @@
 const hapi = require("hapi");
 const inert = require("inert");
 const fs = require("fs");
+const jwt2 = require("hapi-auth-jwt2");
+const env = require("env2")("./config.env");
 
 const login = require("./routes/login.js");
 const home = require("./routes/home.js");
 const welcome = require("./routes/welcome.js");
+const secure = require("./routes/secure.js");
+const validate = require("./validate.js");
 
 
 console.log(home, login);
@@ -18,9 +22,14 @@ server.connection({
   }
 });
 
-server.register(inert, (err) => {
+server.register([inert, jwt2], (err) => {
   if (err) throw err;
-  server.route([home, login, welcome]);
+  server.route([home, login, welcome, secure]);
+});
+server.auth.strategy("jwtStrat", "jwt", {
+  key: process.env.SECRET,
+  verifyOptions: {algorithms: ["HS256"]},
+  validateFunc: validate
 });
 
 server.start((err) => {
